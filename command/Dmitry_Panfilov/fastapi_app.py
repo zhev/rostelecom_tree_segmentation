@@ -4,7 +4,7 @@ from fastapi import FastAPI, File, UploadFile
 app = FastAPI()
 
 # загрузка модели
-model = tf.keras.models.load_model('/app/model.h5')
+model = tf.keras.models.load_model('model.h5')
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
