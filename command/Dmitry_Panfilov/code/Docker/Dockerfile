@@ -7,6 +7,7 @@ LABEL version="2.3"
 LABEL build-date="27-03-2023"
 LABEL description="FastAPI for Tree Segmentation Solutions"
 LABEL maintainer="Dmitry 7292337@gmail.com"
+LABEL url=""
 LABEL license="MIT"
 
 # Установка необходимых пакетов и обновление системы
