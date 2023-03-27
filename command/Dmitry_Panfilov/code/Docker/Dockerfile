@@ -7,7 +7,7 @@ LABEL version="2.3"
 LABEL build-date="27-03-2023"
 LABEL description="FastAPI for Tree Segmentation Solutions"
 LABEL maintainer="Dmitry 7292337@gmail.com"
-LABEL url="https://raw.githubusercontent.com/terrainternship/rostelecom_tree_segmentation/main/command/Dmitry_Panfilov/code/Docker/README.md"
+LABEL url="https://github.com/terrainternship/rostelecom_tree_segmentation/blob/main/command/Dmitry_Panfilov/code/Docker/README.md"
 LABEL license="MIT"
 
 # Установка необходимых пакетов и обновление системы
