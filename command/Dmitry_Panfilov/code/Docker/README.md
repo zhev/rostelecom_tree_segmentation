@@ -15,3 +15,4 @@
 - Останов: [`docker stop`]
 - Проверка: [`docker images`]
 - Удаление: [`docker rmi`]
+
