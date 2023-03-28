@@ -34,7 +34,7 @@ def hello():
     return "Tree Segmentation Project!"
 
 
-app.include_router(mrt)
+app.include_router(mrt) # добавляет новый роутер, который определяет новый набор эндпоинтов для API
 
 
 if __name__ == "__main__":
