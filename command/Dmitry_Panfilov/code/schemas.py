@@ -9,4 +9,4 @@ class ClientMessage(BaseModel):
 class RespSchema(BaseModel):
     code: int
     message: str
-    image: bytes
+    image: bytes              # возвращается изображение как BytesIO
