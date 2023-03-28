@@ -1,5 +1,5 @@
 # main.py - основной файл для реализации серверного приложения
-# с использованием фреймворка FastAPI по созданию API 3 типов клиентов
+# с использованием фреймворка FastAPI по созданию API для 3 типов клиентов
 
 # Импорт модулей и компонент из библиотеки FastAPI, 
 # а также дополнительного модуля mrt из файла routes
@@ -17,9 +17,9 @@ app = FastAPI(title="Segmentation_API", version="0.1.0", debug=True)
 app.add_middleware(
     CORSMiddleware,          # добавляет поддержку CORS из FastAPI
     allow_origins=["*"],     # список исходов (доменов), которым разрешено обращаться к API
-    allow_credentials=True,  # 
-    allow_methods=["*"],     # 
-    allow_headers=["*"],     # 
+    allow_credentials=True,  # разрешает передавать куки и заголовки авторизации при запросах
+    allow_methods=["*"],     # разрешает использовать любые HTTP-методы при запросах
+    allow_headers=["*"],     # разрешает использовать любые заголовки при запросах
 )
 
 
@@ -40,6 +40,6 @@ app.include_router(mrt)
 if __name__ == "__main__":
     # Use this for debugging purposes only
     import uvicorn
-
+    # запуск сервера FastAPI на локальном хосте с уровнем логирования debug и автоматической перезагрузкой при изменении кода
     uvicorn.run("main:app", host="0.0.0.0", port=8000, log_level="debug", reload=True)
 
