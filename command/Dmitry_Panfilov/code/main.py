@@ -28,6 +28,10 @@ app.add_middleware(
     minimum_size=1000, # сжимать только ответы размером больше 1000 байт
 )
 
+
+# определяем обработчик для GET-запроса к корневому URL-адресу приложения:
+# обработчик возвращает строку "Tree Segmentation Project!" в ответ на запрос,
+# а также устанавливает статус код 200 и теги "test" и "auth"
 @app.get("/", status_code=200, tags=['test', 'auth'])
 def hello():
     "Tree Segmentation Project"
