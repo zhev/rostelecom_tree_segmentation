@@ -1,6 +1,6 @@
 import json
 
-# Load environment variables from env.json
+# Загрузка переменных из файла персональных данных env.json (файл не передается на GitHub)
 with open("env.json") as f:
     env_data = json.load(f)
 
