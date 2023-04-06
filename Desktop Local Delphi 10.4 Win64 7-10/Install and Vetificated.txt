@@ -1,0 +1,8 @@
+Video Card last Driver
+https://www.nvidia.com/download/index.aspx?lang=en-us
+
+NVideo Cuda
+https://developer.nvidia.com/cuda-toolkit-archive
+
+cuDNN
+https://developer.nvidia.com/cudnn
