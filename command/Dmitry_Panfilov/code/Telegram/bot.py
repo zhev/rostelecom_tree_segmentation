@@ -14,7 +14,8 @@ f_name = '.env.json'
 if os.path.isfile(f_name):
     with open(f_name, 'r') as f: 
         env = json.load(f)
-    TELEGRAM_BOT_TOKEN, USER_ID = env.values()
+    TELEGRAM_BOT_TOKEN = env["TELEGRAM_BOT_TOKEN"]
+    ALLOWED_USER_IDS = set(env["ALLOWED_USER_IDS"])
 else:
     print(f'\nФайл {f_name} недоступен!')
     sys.exit(1)
