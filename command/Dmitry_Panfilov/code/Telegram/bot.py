@@ -5,10 +5,24 @@ from aiogram.types import ParseMode
 from aiogram.utils import executor
 from aiogram.utils.markdown import hbold
 import aiohttp
+import json
+import os.path
 
-# Вставьте ваш токен
-API_TOKEN = 'YOUR_BOT_TOKEN'
+# Загрузка токена и USER_ID для допущенных пользователей
+f_name = '.env.json'
+if os.path.isfile(f_name):
+    with open(f_name, 'r') as f: 
+        env = json.load(f)
+    TELEGRAM_BOT_TOKEN, USER_ID = env.values()
+else:
+    print(f'\nФайл {f_name} недоступен!')
+    sys.exit(1)
 
+if not TELEGRAM_BOT_TOKEN or not USER_ID:
+    print(f'\nТокен или USER_ID не были загружены из файла {f_name}')
+    sys.exit(1)
+
+    
 logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=API_TOKEN)
