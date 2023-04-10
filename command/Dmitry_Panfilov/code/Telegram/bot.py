@@ -7,6 +7,7 @@ from aiogram.utils.markdown import hbold
 import aiohttp
 import json
 import os.path
+import sys
 
 # Загрузка токена и USER_ID для допущенных пользователей
 f_name = '.env.json'
@@ -38,7 +39,7 @@ markup.add(
 )
 
 # API-адрес
-API_URL = "http://your_fastapi_server_address/image_processing"
+API_URL = "http://fastapi_server_address/image_processing"
 
 
 @dp.message_handler(commands=['start'])
