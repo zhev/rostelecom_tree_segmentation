@@ -27,15 +27,17 @@ async def read_item(item_id: int, q: str = None):
 
   
 def process_file(image):
-    # обработку изображения
-    # например, размытие
+    """ Производит обработку изображения
+        например, размытие
+    """
     image = image.filter(ImageFilter.BLUR)
     return image
     
 
 @app.post("/file/segment-file")
 async def segment_file(file: UploadFile = File(...)):
-    print('Временная директория: ', tempfile.gettempdir())
+    """ Загружает файл, обрабатывает его функцией process_file и так же возвращает файл.
+    """
     image = Image.open(file.file)
     
     # обработка изображения
