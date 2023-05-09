@@ -5,6 +5,7 @@
 
 from fastapi import FastAPI, Request, UploadFile, File
 from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from api_tools import router as api_router
 
@@ -32,34 +33,35 @@ def process_file(image):
     """
     image = image.filter(ImageFilter.BLUR)
     return image
-    
 
-@app.post("/file/segment-file")
-async def segment_file(file: UploadFile = File(...)):
+
+@app.post("/file/segment-file", response_class=HTMLResponse)
+async def segment_file(request: Request, file: UploadFile = File(...)):
     """ Загружает файл, обрабатывает его функцией process_file и так же возвращает файл.
     """
     image = Image.open(file.file)
-    
+
     # обработка изображения
     image = process_file(image)
-    
+
     # создаем временный файл
-    with tempfile.NamedTemporaryFile(delete=False) as tmp:
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp:
         # сохраняем измененную картинку во временный файл
         image.save(tmp, format='JPEG')
-        
+        tmp_path = tmp.name
+
     # возвращаем временный файл как ответ на запрос
-    res = FileResponse(tmp.name, filename="processed_" + file.filename)
-    
-    # удаляем временный файл после ответа на запрос
-#    def remove_file():
-#        try:
-#            shutil.rmtree(tmp.name)
-#        except:
-#            pass
-#    res.background(remove_file)
-    
-    return res  
+    return RedirectResponse(url=f"/processed-image/{tmp_path.split('/')[-1]}")
+
+
+@app.get("/processed-image/{filename}", response_class=HTMLResponse)
+async def show_processed_image(request: Request, filename: str):
+    return templates.TemplateResponse("index.html", {"request": request, "processed_image": f"/files/{filename}"})
+
+
+@app.get("/files/{filename}")
+async def get_image_file(filename: str):
+    return FileResponse(f"/tmp/{filename}")
   
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=5000, log_level="info")

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Hello, world!</title>
-    </head>
-    <body>
-        <h1>Hello, world!</h1>
-        <p>This is a simple FastAPI app.</p>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing</title>
+</head>
+<body>
+    <h1>Загрузите изображение</h1>
+    <form action="/file/segment-file" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Обработать</button>
+    </form>
+    {% if processed_image %}
+    <h2>Обработанное изображение:</h2>
+    <img src="{{ processed_image }}" alt="Processed Image">
+    {% endif %}
+</body>
 </html>
